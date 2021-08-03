@@ -8,7 +8,6 @@ parent:
 
 # CLI
 Documentation for Starport CLI.
-Note: CLI docs reflect the changes in an upcoming release.
 
 ## starport
 
@@ -36,7 +35,7 @@ starport scaffold chain github.com/cosmonaut/mars
 * [starport docs](#starport-docs)	 - Show Starport docs
 * [starport generate](#starport-generate)	 - Generate clients, API docs from source code
 * [starport network](#starport-network)	 - Launch a blockchain network in production
-* [starport relayer](#starport-relayer)	 - Connects blockchains via IBC protocol
+* [starport relayer](#starport-relayer)	 - Connect blockchains by using IBC protocol
 * [starport scaffold](#starport-scaffold)	 - Scaffold a new blockchain, module, message, query, and more
 * [starport tools](#starport-tools)	 - Tools for advanced users
 * [starport version](#starport-version)	 - Print the current build information
@@ -837,7 +836,7 @@ starport network proposal verify [chain-id] [number<,...>] [flags]
 
 ## starport relayer
 
-Connects blockchains via IBC protocol
+Connect blockchains by using IBC protocol
 
 **Options**
 
@@ -884,7 +883,7 @@ starport relayer configure [flags]
 
 **SEE ALSO**
 
-* [starport relayer](#starport-relayer)	 - Connects blockchains via IBC protocol
+* [starport relayer](#starport-relayer)	 - Connect blockchains by using IBC protocol
 
 
 ## starport relayer connect
@@ -903,7 +902,7 @@ starport relayer connect [<path>,...] [flags]
 
 **SEE ALSO**
 
-* [starport relayer](#starport-relayer)	 - Connects blockchains via IBC protocol
+* [starport relayer](#starport-relayer)	 - Connect blockchains by using IBC protocol
 
 
 ## starport scaffold
@@ -934,6 +933,7 @@ CRUD stands for "create, read, update, delete".
 * [starport scaffold packet](#starport-scaffold-packet)	 - Message for sending an IBC packet
 * [starport scaffold query](#starport-scaffold-query)	 - Query to get data from the blockchain
 * [starport scaffold single](#starport-scaffold-single)	 - CRUD for data stored in a single location
+* [starport scaffold type](#starport-scaffold-type)	 - Scaffold only a type definition
 * [starport scaffold vue](#starport-scaffold-vue)	 - Vue 3 web app template
 * [starport scaffold wasm](#starport-scaffold-wasm)	 - Import the wasm module to your app
 
@@ -1021,6 +1021,7 @@ starport scaffold map NAME [field]... [flags]
 
 ```
   -h, --help            help for map
+      --index strings   fields that index the value (default [index])
       --module string   Module to add into. Default is app's main module
       --no-message      Disable CRUD interaction messages scaffolding
   -p, --path string     path of the app
@@ -1153,6 +1154,28 @@ starport scaffold single NAME [field]... [flags]
 * [starport scaffold](#starport-scaffold)	 - Scaffold a new blockchain, module, message, query, and more
 
 
+## starport scaffold type
+
+Scaffold only a type definition
+
+```
+starport scaffold type NAME [field]... [flags]
+```
+
+**Options**
+
+```
+  -h, --help            help for type
+      --module string   Module to add into. Default is app's main module
+      --no-message      Disable CRUD interaction messages scaffolding
+  -p, --path string     path of the app
+```
+
+**SEE ALSO**
+
+* [starport scaffold](#starport-scaffold)	 - Scaffold a new blockchain, module, message, query, and more
+
+
 ## starport scaffold vue
 
 Vue 3 web app template
@@ -1209,10 +1232,79 @@ Tools for advanced users
 **SEE ALSO**
 
 * [starport](#starport)	 - Starport offers everything you need to scaffold, test, build, and launch your blockchain
+* [starport tools completions](#starport-tools-completions)	 - Generate completions script
 * [starport tools ibc-relayer](#starport-tools-ibc-relayer)	 - Typescript implementation of an IBC relayer
 * [starport tools ibc-setup](#starport-tools-ibc-setup)	 - Collection of commands to quickly setup a relayer
 * [starport tools protoc](#starport-tools-protoc)	 - Execute the protoc command
-* [starport tools completions](#starport-tools-completions)	 - Generates a shell completion script 
+
+
+## starport tools completions
+
+Generate completions script
+
+**Synopsis**
+
+ The completions command outputs a completion script you can use in your shell. The output script requires 
+				that [bash-completion](https://github.com/scop/bash-completion)	is installed and enabled in your 
+				system. Since most Unix-like operating systems come with bash-completion by default, bash-completion 
+				is probably already installed and operational.
+
+Bash:
+
+  $ source <(starport  tools completions bash)
+
+  To load completions for every new session, run:
+
+  ** Linux **
+  $ starport  tools completions bash > /etc/bash_completion.d/starport
+
+  ** macOS **
+  $ starport  tools completions bash > /usr/local/etc/bash_completion.d/starport
+
+Zsh:
+
+  If shell completions is not already enabled in your environment, you will need to enable it.  You can execute the following once:
+
+  $ echo "autoload -U compinit; compinit" >> ~/.zshrc
+
+  To load completions for each session, execute once:
+  
+  $ starport  tools completions zsh > "${fpath[1]}/_starport"
+
+  You will need to start a new shell for this setup to take effect.
+
+fish:
+
+  $ starport  tools completions fish | source
+
+  To load completions for each session, execute once:
+  
+  $ starport  tools completions fish > ~/.config/fish/completionss/starport.fish
+
+PowerShell:
+
+  PS> starport  tools completions powershell | Out-String | Invoke-Expression
+
+  To load completions for every new session, run:
+  
+  PS> starport  tools completions powershell > starport.ps1
+  
+  and source this file from your PowerShell profile.
+
+
+```
+starport tools completions
+```
+
+**Options**
+
+```
+  -h, --help   help for completions
+```
+
+**SEE ALSO**
+
+* [starport tools](#starport-tools)	 - Tools for advanced users
 
 
 ## starport tools ibc-relayer
